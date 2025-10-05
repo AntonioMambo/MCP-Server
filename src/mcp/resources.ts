@@ -1,0 +1,1 @@
+// Recursos (somente leitura)

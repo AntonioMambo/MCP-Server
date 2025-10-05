@@ -1,0 +1,9 @@
+{
+    "prompts": [
+        {
+            "name": "generateFakeUser",
+            "description": "Crie um usuário fictício",
+            "content": "Gere um novo usuário com nome e e-mail aleatórios"
+        }
+    ]
+}
