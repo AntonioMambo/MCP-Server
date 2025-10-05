@@ -22,31 +22,36 @@ export function writeData(newData: any) {
 export function updateUser(id: number, updatedFields: Record<string, any>) {
   const data = readData();
 
-  // 🧩 Garante que data.users existe e é um array
   if (!Array.isArray(data.users)) {
     throw new Error("O arquivo JSON deve conter um array 'users'.");
   }
 
-  // 🔍 Procura o usuário pelo id
-  const userIndex = data.users.findIndex((user: any) => user.id === id);
+  // ✅ Verifica se há IDs duplicados e remove automaticamente
+  const uniqueUsers = data.users.filter(
+    (user: any, index: number, self: any[]) =>
+      index === self.findIndex((u) => u.id === user.id)
+  );
+
+  const userIndex = uniqueUsers.findIndex((user: any) => user.id === id);
 
   if (userIndex === -1) {
     console.log(`⚠️ Usuário com id ${id} não encontrado.`);
     return null;
   }
 
-  // ✏️ Atualiza os campos (inclusive adiciona novos, se não existirem)
+  // ✏️ Atualiza os campos (adiciona novos se não existirem)
   const updatedUser = {
-    ...data.users[userIndex],
+    ...uniqueUsers[userIndex],
     ...updatedFields,
   };
 
-  // ✅ Substitui o usuário no array original
-  data.users[userIndex] = updatedUser;
+  uniqueUsers[userIndex] = updatedUser;
 
-  // 💾 Salva no arquivo
-  writeData(data);
+  // 💾 Salva o JSON limpo e atualizado
+  writeData({ users: uniqueUsers });
 
   console.log(`✅ Usuário com id ${id} atualizado com sucesso.`);
   return updatedUser;
+
+
 }

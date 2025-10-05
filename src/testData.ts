@@ -16,7 +16,7 @@ import { readData, writeData, updateUser } from "./utils/data.js";
 // console.log(readData());
 
 // Atualiza o nome e email do usuário com id 1
-updateUser(3, { name: "Be Publicidade", email: "antonio@bepublicidade.co.mz" });
+updateUser(3, { email: "be@bepublicidade.co.mz" });
 
 console.log("=== Depois da atualização ===");
 console.log(readData());

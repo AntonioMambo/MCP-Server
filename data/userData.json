@@ -12,15 +12,9 @@
     },
     {
       "id": 3,
-      "name": "Be Publicidade"
-    },
-    {
-      "id": 3,
-      "name": "Be Publicidade"
-    },
-    {
-      "id": 3,
-      "name": "Be Publicidade"
+      "name": "Be Publicidade",
+      "email": ""
     }
+    
   ]
 }
